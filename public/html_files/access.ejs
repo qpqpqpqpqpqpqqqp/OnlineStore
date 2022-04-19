@@ -30,6 +30,14 @@
 
     <div class="nav-links">
         <ul>
+            <li>
+                <form action="/accessories" method="post">
+                    <select name="currency">
+                        <option value="USD">USD</option>
+                        <option value="KZT">KZT</option>
+                        <option value="RUB">RUB</option>
+                    </select><input type="submit"></form>
+            </li>
             <li><a href="home">Home</a></li>
             <li><a href="cloth">Clothes</a></li>
             <li><a href="shoes">Shoes</a></li>
@@ -52,7 +60,7 @@
         <div class="product-box">
             <img src="../Accessory/pandora1.png" alt="" class="product-img">
             <h2 class="product-title">Pandora Moments Bracelete</h2>
-            <span class="price">$79.99</span>
+            <span class="price"><%= Math.round(ans)*80 %> <%=c%></span>
             <div class="btn">
                 <a href="#">Create order</a>
             </div>
@@ -61,7 +69,7 @@
         <div class="product-box">
             <img src="../Accessory/pandora2.png" alt="" class="product-img">
             <h2 class="product-title">Pandora x StarWars Bracelete</h2>
-            <span class="price">$79.99</span>
+            <span class="price"><%= Math.round(ans)*80 %> <%=c%></span>
             <div class="btn">
                 <a href="#">Create order</a>
             </div>
@@ -70,7 +78,7 @@
         <div class="product-box">
             <img src="../Accessory/pandora3.png" alt="" class="product-img">
             <h2 class="product-title">Pandora ME Bracelete</h2>
-            <span class="price">$79.99</span>
+            <span class="price"><%= Math.round(ans)*80 %> <%=c%></span>
             <div class="btn">
                 <a href="#">Create order</a>
             </div>
@@ -79,7 +87,7 @@
         <div class="product-box">
             <img src="../Accessory/ring1.png" alt="" class="product-img">
             <h2 class="product-title">Pandora Ring Tiara</h2>
-            <span class="price">$79.99</span>
+            <span class="price"><%= Math.round(ans)*80 %> <%=c%></span>
             <div class="btn">
                 <a href="#">Create order</a>
             </div>
@@ -88,7 +96,7 @@
         <div class="product-box">
             <img src="../Accessory/ring2.png" alt="" class="product-img">
             <h2 class="product-title">Pandora Ring Sparkling Heart</h2>
-            <span class="price">$79.99</span>
+            <span class="price"><%= Math.round(ans)*80 %> <%=c%></span>
             <div class="btn">
                 <a href="#">Create order</a>
             </div>
@@ -97,7 +105,7 @@
         <div class="product-box">
             <img src="../Accessory/ring3.png" alt="" class="product-img">
             <h2 class="product-title">Pandora Ring LOVE ME</h2>
-            <span class="price">$79.99</span>
+            <span class="price"><%= Math.round(ans)*80 %> <%=c%></span>
             <div class="btn">
                 <a href="#">Create order</a>
             </div>
@@ -105,7 +113,7 @@
         <div class="product-box">
             <img src="../Accessory/Earrings1.png" alt="" class="product-img">
             <h2 class="product-title">Pandora Earrings Sparkling Heart</h2>
-            <span class="price">$79.99</span>
+            <span class="price"><%= Math.round(ans)*80 %> <%=c%></span>
             <div class="btn">
                 <a href="#">Create order</a>
             </div>
@@ -114,7 +122,7 @@
         <div class="product-box">
             <img src="../Accessory/Earrings2.png" alt="" class="product-img">
             <h2 class="product-title">Pandora Earrings Brilliant Oval</h2>
-            <span class="price">$79.99</span>
+            <span class="price"><%= Math.round(ans)*80 %> <%=c%></span>
             <div class="btn">
                 <a href="#">Create order</a>
             </div>
@@ -123,7 +131,7 @@
         <div class="product-box">
             <img src="../Accessory/Earrings3.png" alt="" class="product-img">
             <h2 class="product-title">Earrings Earrings Golden Snitch, Harry Potter</h2>
-            <span class="price">$79.99</span>
+            <span class="price"><%= Math.round(ans)*80 %> <%=c%></span>
             <div class="btn">
                 <a href="#">Create order</a>
             </div>
@@ -163,7 +171,7 @@
         <p>If you have any questions, please contact us on these social networks </p>
         <ul class="socials">
             <li><a href="https://www.facebook.com/profile.php?id=100078459212054&sk=about"><i
-                    class="fa fa-facebook"></i></a></li>
+                            class="fa fa-facebook"></i></a></li>
             <li><a href="https://twitter.com/MeirkhanA"><i class="fa fa-twitter"></i></a></li>
             <li><a href="#"><i class="fa fa-instagram"></i></a></li>
             <li><a href="https://www.youtube.com/channel/UCo9K3OdfyUlujvBFHV11oDQ"><i class="fa fa-youtube"></i></a>
