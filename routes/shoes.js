@@ -2,8 +2,6 @@ const express = require("express");
 const router = express.Router();
 const path = require('path');
 const https = require("https");
-//something to do
-const port = 3000;
 router
     .route('/')
     .get((req, res) => res.render(path.resolve('public/html_files/shoe.ejs'), {ans: 1, holder: 'USD'}))
