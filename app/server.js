@@ -2,12 +2,20 @@ const express = require("express")
 const bodyParser = require("body-parser")
 const mongoose = require('mongoose');
 const dbConfig = require('../config/database.config.js');
+// <<<<<<< HEAD
 const app = express();
 const port = 3000;
+// =======
+const path = require("path");
+// >>>>>>> origin/miko
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(express.static('public'))
 
 app.set('view engine','ejs')
+
+
+app.set("views", path.join(__dirname, "/public/html_files"));
+
 
 mongoose.Promise = global.Promise;
 mongoose.connect(dbConfig.url, {
