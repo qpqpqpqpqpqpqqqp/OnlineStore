@@ -4,10 +4,15 @@ const app = express();
 const port = 3000;
 const mongoose = require('mongoose');
 const dbConfig = require('../config/database.config.js');
+const path = require("path");
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(express.static('public'))
 
 app.set('view engine','ejs')
+
+
+app.set("views", path.join(__dirname, "/public/html_files"));
+
 
 mongoose.Promise = global.Promise;
 mongoose.connect(dbConfig.url, {
