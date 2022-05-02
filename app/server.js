@@ -1,9 +1,9 @@
-const express = require("express");
+const express = require("express")
 const bodyParser = require("body-parser")
-const app = express();
-const port = 3000;
 const mongoose = require('mongoose');
 const dbConfig = require('../config/database.config.js');
+const app = express();
+const port = 3000;
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(express.static('public'))
 
