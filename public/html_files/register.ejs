@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="nav-links">
+    <ul>
+        <li><a href="home">Home</a></li>
+        <li><a href="cloth">Clothes</a></li>
+        <li><a href="shoes">Shoes</a></li>
+        <li><a href="accessories">Accessories</a></li>
+        <li><a href="profile">Profile</a></li>
+    </ul>
+</div>
+<div class="orderBody">
+    <p>Register</p>
+    <form action="/user" method="post">
+        <div class="input-group">
+            <label for="firstName">Name</label>
+            <input type="text" name="firstName" />
+        </div>
+        <div class="input-group">
+            <label for="phone">Phone number</label>
+            <input type="text" name="phone" />
+        </div>
+        <div class="input-group">
+            <label for="email">E-mail</label>
+            <input type="email" name="email" />
+        </div>
+        <div class="input-group">
+            <label for="city">City</label>
+            <input type="text" name="city" />
+        </div>
+        <div class="input-group">
+            <label for="postIndex">Post Index</label>
+            <input type="text" name="postIndex" />
+        </div>
+        <button class="submit">Order</button>
+    </form>
+    <a href="/login">I have an account</a>
+</div>
+</body>
+</html>

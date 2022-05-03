@@ -4,10 +4,10 @@ const schema = new mongoose.Schema({
         type: String,
         default: ''
     },
-    lastName: {
-        type: String,
-        default: ''
-    },
+    // lastName: {
+    //     type: String,
+    //     default: ''
+    // },
     email: {
         type: String,
         required: true,

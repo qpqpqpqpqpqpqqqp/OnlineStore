@@ -1,24 +1,23 @@
 const UserModel = require('../models/user')
+const path = require("path");
 
 exports.create = async (req, res) => {
-    if (!req.body.email && !req.body.firstName && !req.body.lastName && !req.body.phone && !req.body.postIndex && !req.body.city) {
+    console.log(req.body)
+    if (!req.body.email && !req.body.firstName && /*!req.body.lastName &&*/ !req.body.phone && !req.body.postIndex && !req.body.city) {
         res.status(400).send({message: "Content can not be empty!"});
     }
 
     const user = new UserModel({
         email: req.body.email,
         firstName: req.body.firstName,
-        lastName: req.body.lastName,
+        // lastName: req.body.lastName,
         phone: req.body.phone,
         city: req.body.city,
         postIndex: req.body.postIndex
     });
 
     await user.save().then(data => {
-        res.send({
-            message: "User created successfully!!",
-            user: data
-        });
+        res.render(path.resolve('public/html_files/UserAccount.ejs'), {name: data.firstName, phone: data.phone, email: data.email, city: data.city, pIndex: data.postIndex})
     }).catch(err => {
         res.status(500).send({
             message: err.message || "Some error occurred while creating user"
@@ -27,6 +26,7 @@ exports.create = async (req, res) => {
 };
 
 exports.findAll = async (req, res) => {
+    res.render(path.resolve('public/html_files/register.ejs'))
     try {
         const user = await UserModel.find();
         res.status(200).json(user);
