@@ -29,5 +29,5 @@ app.use('/accessories', require("./routes/accessories"))
 app.use('/profile', require("./routes/profile"))
 
 app.listen(port, () =>
-    console.log(`App listening at http://localhost:${port}/user`)
+    console.log(`App listening at http://localhost:${port}/home`)
 );

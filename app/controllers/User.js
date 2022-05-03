@@ -26,7 +26,6 @@ exports.create = async (req, res) => {
 };
 
 exports.findAll = async (req, res) => {
-    res.render(path.resolve('public/html_files/register.ejs'))
     try {
         const user = await UserModel.find();
         res.status(200).json(user);
