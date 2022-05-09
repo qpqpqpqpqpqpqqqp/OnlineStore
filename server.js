@@ -3,7 +3,7 @@ const bodyParser = require("body-parser")
 const app = express();
 const port = 3000;
 const mongoose = require('mongoose');
-const dbConfig = require('../config/database.config.js');
+const dbConfig = require('./config/database.config.js');
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(express.static('public'))
 
