@@ -1,7 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser")
 const app = express();
-const port = 3000;
 const mongoose = require('mongoose');
 const dbConfig = require('./config/database.config.js');
 app.use(bodyParser.urlencoded({extended: true}))
@@ -27,6 +26,11 @@ app.use('/cloth', require("./routes/clothes"))
 app.use('/shoes', require("./routes/shoes"))
 app.use('/accessories', require("./routes/accessories"))
 app.use('/profile', require("./routes/profile"))
+
+let port = process.env.PORT;
+if (port == null || port == "") {
+    port = 3000;
+}
 
 app.listen(port, () =>
     console.log(`App listening at http://localhost:${port}/home`)
