@@ -85,7 +85,7 @@ exports.muissa = async (req, res) => {
 exports.update_get = async (req, res) => {
     const error = req.session.error;
     delete req.session.error;
-    res.render(path.resolve('./front/adminPage/update.ejs'), {err: error, oldSeller: null, newSeller: null});
+    res.render(path.resolve('./front/adminPage/updateProd.ejs'), {err: error, oldSeller: null, newSeller: null});
 };
 
 exports.update_patch = async (req, res) => {
@@ -118,7 +118,7 @@ exports.update_patch = async (req, res) => {
             req.session.error = "Seller to update does not exist!";
             return res.redirect('/admin/update');
         } else {
-            res.render(path.resolve('./front/adminPage/update.ejs'), {err: null, oldSeller: currUsername, newSeller: seller});
+            res.render(path.resolve('./front/adminPage/updateProd.ejs'), {err: null, oldSeller: currUsername, newSeller: seller});
         }
     })
     // if (prev) {
@@ -128,7 +128,7 @@ exports.update_patch = async (req, res) => {
     //         phone,
     //         hashPsw,
     //     })
-    //     res.render(path.resolve('./front/adminPage/update.ejs'), {err: null, oldSeller: prev, newSeller: req.body});
+    //     res.render(path.resolve('./front/adminPage/updateProd.ejs'), {err: null, oldSeller: prev, newSeller: req.body});
     // }
     // // else if (customer) {
     // //     await Customer.findOneAndUpdate({email: currUsername}, {

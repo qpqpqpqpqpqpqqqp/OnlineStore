@@ -1,8 +1,10 @@
-const express = require("express");
-const router = express.Router();
-const path = require('path');
+const express = require("express")
+const path = require('path')
+const isAuth = require(path.resolve("./auth/auth"))
+const profileController = require(path.resolve("./controllers/profile_controller"))
+const router = express.Router()
 // const https = require("https");
 router
     .route('/')
-    .get((req, res) => res.render(path.resolve('public/html_files/UserAccount.ejs'), {name: 'Abd', phone: '8 777 777 77 77', email: 'sdvewgwg@gmail.com', city: 'Berlin', pIndex: 1}))
+    .get(isAuth,profileController.profile_get)
 module.exports = router;

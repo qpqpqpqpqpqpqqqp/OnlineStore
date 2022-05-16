@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Register for Admin</title>
+    <title>Register form</title>
     <style>
         .login-form {
             width: 400px;
@@ -39,7 +39,7 @@
         <p style="color: red;"><%= err %></p>
     <% } %>
     <h3>Register Page</h3>
-    <form action="/admin/register" method="POST">
+    <form action="/register" method="POST">
         <div class="input-group">
             <label for="username">Username:</label>
             <input type="text" name="username" />
@@ -49,13 +49,25 @@
             <input type="email" name="email" />
         </div>
         <div class="input-group">
+            <label for="phone">Phone:</label>
+            <input type="number" name="phone" />
+        </div>
+        <div class="input-group">
+            <label for="city">City:</label>
+            <input type="text" name="city" />
+        </div>
+        <div class="input-group">
+            <label for="postIndex">Post Index:</label>
+            <input type="number" name="postIndex" />
+        </div>
+        <div class="input-group">
             <label for="password">Password:</label>
             <input type="password" name="password" />
         </div>
         <button>Register</button>
     </form>
     <p>Have an account?</p>
-    <a href="/admin/login">Login</a>
+    <a href="/login">Login</a>
 </div>
 </body>
 </html>

@@ -28,7 +28,9 @@ app.use(
 ) //stores the session
 
 app.use('/admin', require("./routes/admin-main-page"))
-app.get('/trident', (req, res) => res.render(path.resolve('./front/trident.ejs')))
+app.use('/seller', require("./routes/seller-main-page"))
+app.use('/', require("./routes/login-page"))
+// app.get('/trident', (req, res) => res.render(path.resolve('./front/trident.ejs')))
 
 app.use('/home', require("./routes/root"))
 app.use('/cloth', require("./routes/clothes"))
@@ -42,5 +44,5 @@ if (port == null || port == "") {
 }
 
 app.listen(port, () =>
-    console.log(`App listening at http://localhost:${port}/home`)
+    console.log(`App listening at http://localhost:${port}/login`)
 );
