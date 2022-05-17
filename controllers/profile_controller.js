@@ -13,7 +13,7 @@ exports.profile_get = async (req, res) => {
         res.redirect('/admin')
     }
     else if (!isAdmin && isSeller) {
-        res.redirect('/seller/read')
+        res.redirect('/seller/profile')
     } else {
         const phone = req.session.phone
         const city = req.session.city

@@ -7,7 +7,7 @@ const path = require("path");
 exports.login_get = async (req, res) => {
     const error = req.session.error;
     delete req.session.error;
-    res.render(path.resolve('./front/login.ejs'), { err: error });
+    res.render(path.resolve('./public/front/login.ejs'), { err: error });
 };
 
 exports.login_post = async (req, res) => {
@@ -44,7 +44,7 @@ exports.login_post = async (req, res) => {
         req.session.isAdmin = false
         req.session.isSeller = true
         req.session.phone = seller.phone
-        res.redirect('/seller')
+        res.redirect('/seller/profile')
     }
     else if (customer) {
         req.session.isAdmin = false
@@ -59,7 +59,7 @@ exports.login_post = async (req, res) => {
 exports.register_get = async (req, res) => {
     const error = req.session.error;
     delete req.session.error;
-    res.render(path.resolve('./front/register.ejs'), { err: error });
+    res.render(path.resolve('./public/front/register.ejs'), { err: error });
 };
 
 exports.register_post = async (req, res) => {
@@ -99,9 +99,15 @@ exports.register_post = async (req, res) => {
     });
 
     await customer.save();
-    req.session.isAuth = true;
-    req.session.username = username;
-    res.redirect('/home')
+    req.session.isAuth = true
+    req.session.isAdmin = false
+    req.session.isSeller = false
+    req.session.username = username
+    req.session.email = email
+    req.session.phone = customer.phone
+    req.session.city = customer.city
+    req.session.postIndex = customer.postIndex
+    res.redirect('/profile')
 };
 
 exports.logout_post = async (req, res) => {

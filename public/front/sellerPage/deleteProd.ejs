@@ -15,74 +15,85 @@
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <!-- Custom styles for this template -->
-    <link href="css/headers.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css_files/binarasAttempt.css">
 </head>
 <body>
+<div class="navnav">
+    <div class="nav-header">
+        <div class="nav-title">
+            DAMA
+        </div>
+    </div>
 
+    <div class="nav-links">
+        <ul>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/cloth">Clothes</a></li>
+            <li><a href="/shoes">Shoes</a></li>
+            <li><a href="/accessories">Accessories</a></li>
+            <li><a href="/profile">Profile</a></li>
+        </ul>
+    </div>
+</div>
 <main>
     <div class="container">
         <header class="d-flex justify-content-center py-3">
             <ul class="nav nav-pills">
-                <li class="nav-item"><a href="/seller/read" class="nav-link">My profile</a></li>
-                <li class="nav-item"><a href="/seller" class="nav-link active" aria-current="page">Create new</a></li>
+                <li class="nav-item"><a href="/seller/profile" class="nav-link">My profile</a></li>
+                <li class="nav-item"><a href="/seller/create" class="nav-link">Create new</a></li>
 <!--                <li class="nav-item"><a href="/seller/stock" class="nav-link">Change Stock</a></li>-->
                 <li class="nav-item"><a href="/seller/update" class="nav-link">Update</a></li>
-                <li class="nav-item"><a href="/seller/delete" class="nav-link">Delete</a></li>
+                <li class="nav-item"><a href="/seller/delete" class="nav-link active" aria-current="page">Delete</a>
+                </li>
             </ul>
         </header>
     </div>
-
 </main>
-
 <main>
     <div class="container">
         <% if(err) { %>
             <p style="color: red;"><%= err %></p>
         <% } %>
         <div class="col-md-7 col-lg-8">
-            <h4 class="mb-3">Create Product</h4>
-            <h6 class="mb-3">Hello seller '<%= username %>'!</h6>
-            <form action="/seller" class="needs-validation" method="POST">
+            <h4 class="mb-3">Delete your product</h4>
+            <form action="/seller/delete" class="needs-validation" novalidate method="POST">
                 <div class="row g-3">
                     <div class="col-sm-6">
-                        <label for="name" class="form-label">Product name</label>
+                        <label for="name" class="form-label">Name</label>
                         <input type="text" class="form-control" name="name" id="name" placeholder="" value=""
                                required>
                         <div class="invalid-feedback">
                             Valid name is required.
                         </div>
                     </div>
-
-                    <div class="col-sm-6">
-                        <label for="type" class="form-label">Type</label>
-                        <select name="type">
-                            <option value="shoes">Shoes</option>
-                            <option value="clothes">Clothes</option>
-                            <option value="acc">Accessories</option>
-                        </select>
-                        <div class="invalid-feedback">
-                            Valid type is required.
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <label for="price" class="form-label">Price</label>
-                        <input type="number" class="form-control" name="price" id="price" placeholder="" value=""
-                               required>
-                        <div class="invalid-feedback">
-                            Valid price is required.
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <label for="quantity" class="form-label">Quantity</label>
-                        <input type="number" class="form-control" name="quantity" id="quantity" placeholder="" value=""
-                               required>
-                        <div class="invalid-feedback">
-                            Valid quantity is required.
-                        </div>
-                    </div>
                 </div>
                 <br>
-                <button class="w-100 btn btn-primary btn-lg" type="submit">Create</button>
+                <button class="w-100 btn btn-primary btn-lg" type="submit">Delete</button>
+                <br><br>
+                <div class="row g-3">
+                    <% if(prod.length === 0){ %>
+                        <h5 class="mb-3">Nothing to delete</h5>
+                    <% } else{ %>
+                        <h5 class="mb-3">Your products: </h5>
+                        <table>
+                            <tr>
+                                <td>Name</td>
+                                <td>Type</td>
+                                <td>Price (in $)</td>
+                                <td>Quantity</td>
+                            </tr>
+
+                            <% for(let i = 0;i < prod.length;i++){ %>
+                                <tr>
+                                    <td><%= prod[i].name %></td>
+                                    <td><%= prod[i].type %></td>
+                                    <td><%= prod[i].price %></td>
+                                    <td><%= prod[i].quantity %></td>
+                                </tr>
+                            <% } %>
+                        </table>
+                    <% } %>
+                </div>
             </form>
         </div>
     </div>
@@ -97,7 +108,6 @@
         <button>Logout</button>
     </form>
 </footer>
-
 <script src="/docs/5.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
@@ -105,4 +115,3 @@
 
 </body>
 </html>
-

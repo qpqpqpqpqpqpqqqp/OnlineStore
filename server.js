@@ -44,5 +44,5 @@ if (port == null || port == "") {
 }
 
 app.listen(port, () =>
-    console.log(`App listening at http://localhost:${port}/login`)
+    console.log(`App listening at http://localhost:${port}/home`)
 );

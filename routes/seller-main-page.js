@@ -5,11 +5,11 @@ const isAuth = require(path.resolve("./auth/auth"))
 const router = express.Router();
 
 router
-    .route('/')
+    .route('/create')
     .get(isAuth, sellerPageController.create_get)
     .post(isAuth, sellerPageController.create_post)
 router
-    .route('/read')
+    .route('/profile')
     .get(isAuth, sellerPageController.read_get)
 // router
 //     .route('/find')

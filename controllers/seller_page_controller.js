@@ -8,7 +8,7 @@ exports.create_get = async (req, res) => {
     const error = req.session.error;
     delete req.session.error;
     const name = req.session.username;
-    res.render(path.resolve('./front/sellerPage/createProd.ejs'), {username: name, err: error});
+    res.render(path.resolve('./public/front/sellerPage/createProd.ejs'), {username: name, err: error});
 };
 
 exports.create_post = async (req, res) => {
@@ -17,13 +17,13 @@ exports.create_post = async (req, res) => {
 
     if (!name && !type && !price && !quantity) {
         req.session.error = "Content empty!";
-        return res.redirect('/seller');
+        return res.redirect('/seller/create');
     }
 
     let product = await Product.findOne({name})
     if (product) {
         req.session.error = "Such product already exists!";
-        return res.redirect('/seller');
+        return res.redirect('/seller/create');
     }
 
     product = new Product({
@@ -35,7 +35,7 @@ exports.create_post = async (req, res) => {
     });
 
     await product.save()
-    res.redirect('/seller/read')
+    res.redirect('/seller/profile')
 };
 
 exports.read_get = async (req, res) => {
@@ -43,7 +43,7 @@ exports.read_get = async (req, res) => {
     const email = req.session.email
     const phone = req.session.phone
     const products = await Product.find({author})
-    res.render(path.resolve('./front/sellerPage/readProd.ejs'), {prod: products, username: author, email: email, phone: phone});
+    res.render(path.resolve('./public/front/sellerPage/readProd.ejs'), {prod: products, username: author, email: email, phone: phone});
 };
 
 // exports.find_get = async (req, res) => {
@@ -72,7 +72,7 @@ exports.read_get = async (req, res) => {
 exports.update_get = async (req, res) => {
     const error = req.session.error;
     delete req.session.error;
-    res.render(path.resolve('./front/sellerPage/updateProd.ejs'), {err: error, oldProd: null, newProd: null});
+    res.render(path.resolve('./public/front/sellerPage/updateProd.ejs'), {err: error, oldProd: null, newProd: null});
 };
 
 exports.update_patch = async (req, res) => {
@@ -109,7 +109,7 @@ exports.update_patch = async (req, res) => {
             req.session.error = "Product to update does not exist!";
             return res.redirect('/seller/update');
         } else {
-            res.render(path.resolve('./front/sellerPage/updateProd.ejs'), {err: null, oldProd: currName, newProd: product});
+            res.render(path.resolve('./public/front/sellerPage/updateProd.ejs'), {err: null, oldProd: currName, newProd: product});
         }
     })
 };
@@ -120,7 +120,7 @@ exports.delete_get = async (req, res) => {
 
     const author = req.session.username;
     const products = await Product.find({author})
-    res.render(path.resolve('./front/sellerPage/deleteProd.ejs'), {prod: products, err: error});
+    res.render(path.resolve('./public/front/sellerPage/deleteProd.ejs'), {prod: products, err: error});
 };
 
 exports.delete_post = async (req, res) => {
