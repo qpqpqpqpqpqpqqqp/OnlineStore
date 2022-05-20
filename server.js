@@ -2,9 +2,9 @@ const express = require("express")
 const session = require("express-session")
 const MongoDBStore = require("connect-mongodb-session")(session)
 const bodyParser = require("body-parser")
+const methodOverride = require("method-override")
 const connectDB = require("./config/db");
-const config = require("./config/database.config");
-const path = require("path");
+const config = require("./config/database.config")
 const mongoURI = config.url;
 const app = express();
 
@@ -16,27 +16,26 @@ const store = new MongoDBStore({
 })
 
 app.set('view engine','ejs')
+app.use(methodOverride('_method'))
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(express.static('public'))
 app.use(
     session({
         secret: 'secret',
+        // secret: process.env.SECRET,
         resave: false,
         saveUninitialized: false,
         store: store,
     })
 ) //stores the session
 
+app.use('/', require("./routes/product-routes"))
+app.use('/', require("./routes/login-page"))
+
+app.use('/cart', require("./routes/cart"))
+app.use('/profile', require("./routes/profile"))
 app.use('/admin', require("./routes/admin-main-page"))
 app.use('/seller', require("./routes/seller-main-page"))
-app.use('/', require("./routes/login-page"))
-// app.get('/trident', (req, res) => res.render(path.resolve('./front/trident.ejs')))
-
-app.use('/home', require("./routes/root"))
-app.use('/cloth', require("./routes/clothes"))
-app.use('/shoes', require("./routes/shoes"))
-app.use('/accessories', require("./routes/accessories"))
-app.use('/profile', require("./routes/profile"))
 
 let port = process.env.PORT;
 if (port == null || port == "") {

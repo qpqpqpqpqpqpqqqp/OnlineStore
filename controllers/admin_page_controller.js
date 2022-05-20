@@ -2,6 +2,7 @@ const bcrypt = require("bcryptjs")
 const Admin = require("../models/admin");
 const Seller = require('../models/seller')
 const Customer = require('../models/consumer')
+const Product = require("../models/product")
 const path = require("path")
 
 exports.create_get = async (req, res) => {
@@ -113,12 +114,19 @@ exports.update_patch = async (req, res) => {
         username,
         phone,
         password: hashPsw,
-    }).then(data => {
+    }).then(async data => {
         if (!data) {
             req.session.error = "Seller to update does not exist!";
             return res.redirect('/admin/update');
         } else {
-            res.render(path.resolve('./public/front/adminPage/updateProd.ejs'), {err: null, oldSeller: currUsername, newSeller: seller});
+            await Product.updateMany({author: currUsername}, {
+                $set:{author: username},
+            })
+            res.render(path.resolve('./public/front/adminPage/update.ejs'), {
+                err: null,
+                oldSeller: currUsername,
+                newSeller: seller
+            });
         }
     })
     // if (prev) {
@@ -159,6 +167,7 @@ exports.delete_post = async (req, res) => {
 
     if (seller) {
         await Seller.deleteOne(seller)
+        await Product.deleteMany({author: seller.username})
         res.render(p, {name: seller.username, type: 'Seller'})
     } else if (customer) {
         await Customer.deleteOne(customer)

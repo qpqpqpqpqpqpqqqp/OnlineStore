@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>DAMA</title>
+    <title>Dama</title>
     <link rel="stylesheet" href="../css_files/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
 </head>
@@ -65,12 +67,13 @@
                         <option value="RUB">RUB</option>
                     </select><input type="submit"></form>
             </li>
+            <li><a href="/cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></li>
             <li><a href="/home">Home</a></li>
             <li><a href="/cloth">Clothes</a></li>
             <li><a href="/shoes">Shoes</a></li>
             <li><a href="/accessories">Accessories</a></li>
             <li><a href="/profile">Profile</a></li>
-<!--            <li><a href="/login">Log In</a></li>-->
+            <!--            <li><a href="/login">Log In</a></li>-->
         </ul>
     </div>
 </div>
@@ -83,116 +86,29 @@
     </div>
 </header>
 <section class="shop container">
-    <h2 class="section-title">Shop Products</h2>
-    <div class="shop-content">
-        <div class="product-box">
-            <img src="../sneakers/air2.png" alt="" class="product-img">
-            <h2 class="product-title">Nike/ Sneakers</h2>
-            <span class="price"><%= Math.round(ans)*80 %> <%=holder%></span>
-            <div class="btn">
-                <a href="#">Order</a>
-            </div>
-        </div>
+    <h2 class="section-title">Shoes</h2>
+    <% if(prod.length === 0){ %>
+        <h2 class="section-title">Stock empty!</h2>
+    <% } else{ %>
+        <div class="shop-content">
+            <% for(let i = 0;i < prod.length;i++){ %>
+                <form action="/cart" class="needs-validation" method="POST">
+                    <div class="product-box">
+                        <img src="../sneakers/air2.png" alt="" class="product-img">
+                        <h2 class="product-title"><%= prod[i].name %></h2>
+                        <span class="price"><%= Math.round(ans) * prod[i].price %> <%= holder %></span>
+                        <span class="author">By <%= prod[i].author %></span>
+                        <br>
+                        <span>Only <%= prod[i].quantity %> left!</span>
 
-        <div class="product-box">
-            <img src="../sneakers/airj.png" alt="" class="product-img">
-            <h2 class="product-title">Nike/ Sneakers</h2>
-            <span class="price"><%= Math.round(ans)*80 %> <%=holder%></span>
-            <div class="btn">
-                <a href="#">Order</a>
-            </div>
+                        <div class="btn">
+                            <button>Add to cart</button>
+                        </div>
+                    </div>
+                </form>
+            <% } %>
         </div>
-
-        <div class="product-box">
-            <img src="../sneakers/pink.png" alt="" class="product-img">
-            <h2 class="product-title">Nike/ Sneakers</h2>
-            <span class="price"><%= Math.round(ans)*80 %> <%=holder%></span>
-            <div class="btn">
-                <a href="#">Order</a>
-            </div>
-        </div>
-
-        <div class="product-box">
-            <img src="../sneakers/italy.png" alt="" class="product-img">
-            <h2 class="product-title">Nike/ Sneakers</h2>
-            <span class="price"><%= Math.round(ans)*80 %> <%=holder%></span>
-            <div class="btn">
-                <a href="#">Order</a>
-            </div>
-        </div>
-
-        <div class="product-box">
-            <img src="../sneakers/mon.png" alt="" class="product-img">
-            <h2 class="product-title">Nike/ Sneakers</h2>
-            <span class="price"><%= Math.round(ans)*80 %> <%=holder%></span>
-            <div class="btn">
-                <a href="#">Order</a>
-            </div>
-        </div>
-
-        <div class="product-box">
-            <img src="../sneakers/airf.png" alt="" class="product-img">
-            <h2 class="product-title">Nike/ Sneakers</h2>
-            <span class="price"><%= Math.round(ans)*80 %> <%=holder%></span>
-            <div class="btn">
-                <a href="#">Order</a>
-            </div>
-        </div>
-
-        <div class="product-box">
-            <img src="../sneakers/red.png" alt="" class="product-img">
-            <h2 class="product-title">Nike/ Sneakers</h2>
-            <span class="price"><%= Math.round(ans)*80 %> <%=holder%></span>
-            <div class="btn">
-                <a href="#">Order</a>
-            </div>
-        </div>
-
-        <div class="product-box">
-            <img src="../sneakers/orange.png" alt="" class="product-img">
-            <h2 class="product-title">Nike/ Sneakers</h2>
-            <span class="price"><%= Math.round(ans)*80 %> <%=holder%></span>
-            <div class="btn">
-                <a href="#">Order</a>
-            </div>
-        </div>
-
-        <div class="product-box">
-            <img src="../sneakers/green.png" alt="" class="product-img">
-            <h2 class="product-title">Nike/ Sneakers</h2>
-            <span class="price"><%= Math.round(ans)*80 %> <%=holder%></span>
-            <div class="btn">
-                <a href="#">Order</a>
-            </div>
-        </div>
-
-        <div class="product-box">
-            <img src="../sneakers/grey.png" alt="" class="product-img">
-            <h2 class="product-title">Nike/ Sneakers</h2>
-            <span class="price"><%= Math.round(ans)*80 %> <%=holder%></span>
-            <div class="btn">
-                <a href="#">Order</a>
-            </div>
-        </div>
-
-        <div class="product-box">
-            <img src="../sneakers/off.png" alt="" class="product-img">
-            <h2 class="product-title">Nike/ Sneakers</h2>
-            <span class="price"><%= Math.round(ans)*80 %> <%=holder%></span>
-            <div class="btn">
-                <a href="#">Order</a>
-            </div>
-        </div>
-
-        <div class="product-box">
-            <img src="../Clothes/white.png" alt="" class="product-img">
-            <h2 class="product-title">Nike/ Sneakers</h2>
-            <span class="price"><%= Math.round(ans)*80 %> <%=holder%></span>
-            <div class="btn">
-                <a href="#">Order</a>
-            </div>
-        </div>
-    </div>
+    <% } %>
 </section>
 <footer>
     <div class="footer-content" id="202">
@@ -200,7 +116,7 @@
         <p>What you know about rolling down in the deep?</p>
         <ul class="socials">
             <li><a href="https://www.facebook.com/profile.php?id=100078459212054&sk=about"><i
-                    class="fa fa-facebook"></i></a></li>
+                            class="fa fa-facebook"></i></a></li>
             <li><a href="https://twitter.com/MeirkhanA"><i class="fa fa-twitter"></i></a></li>
             <li><a href="#"><i class="fa fa-instagram"></i></a></li>
             <li><a href="https://www.youtube.com/channel/UCo9K3OdfyUlujvBFHV11oDQ"><i class="fa fa-youtube"></i></a>
@@ -222,6 +138,6 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
-<script src="../js_files/order.js"></script>
+<!--<script src="../js_files/order.js"></script>-->
 </body>
 </html>

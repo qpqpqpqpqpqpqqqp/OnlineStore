@@ -14,20 +14,20 @@ document.querySelectorAll(".btn").forEach(link => link.addEventListener('click',
 
 
 
-orderingBtn.addEventListener('click', function(){
-      if(document.querySelector('.name').value.trim().length >= 2 &&
-      document.querySelector('.phone').value.trim().length == 11 &&
-      document.querySelector('.mail').value.trim().length >= 2 &&
-      document.querySelector('.city').value.trim().length >= 2 &&
-      document.querySelector('.index').value.trim().length == 6){
-          successW.classList.add('isShown');
-          document.querySelector('.name').value = '';
-          document.querySelector('.phone').value = '';
-          document.querySelector('.mail').value = '';
-          document.querySelector('.city').value = '';
-          document.querySelector('.index').value = '';
-      }
-  })
+// orderingBtn.addEventListener('click', function(){
+//       if(document.querySelector('.name').value.trim().length >= 2 &&
+//       document.querySelector('.phone').value.trim().length == 11 &&
+//       document.querySelector('.mail').value.trim().length >= 2 &&
+//       document.querySelector('.city').value.trim().length >= 2 &&
+//       document.querySelector('.index').value.trim().length == 6){
+//           successW.classList.add('isShown');
+//           document.querySelector('.name').value = '';
+//           document.querySelector('.phone').value = '';
+//           document.querySelector('.mail').value = '';
+//           document.querySelector('.city').value = '';
+//           document.querySelector('.index').value = '';
+//       }
+//   })
 
 closeSuccess.addEventListener('click', function(){
     successW.classList.remove('isShown');

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>DAMA</title>
+    <title>Dama</title>
     <link rel="stylesheet" href="../css_files/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,12 +38,13 @@
                         <option value="RUB">RUB</option>
                     </select><input type="submit"></form>
             </li>
+            <li><a href="/cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></li>
             <li><a href="/home">Home</a></li>
             <li><a href="/cloth">Clothes</a></li>
             <li><a href="/shoes">Shoes</a></li>
             <li><a href="/accessories">Accessories</a></li>
             <li><a href="/profile">Profile</a></li>
-<!--            <li><a href="/login">Log In</a></li>-->
+            <!--            <li><a href="/login">Log In</a></li>-->
         </ul>
     </div>
 </div>
@@ -54,12 +55,13 @@
         <div class="orderBody">
             <p>Create Order</p>
             <form action="/" method="post">
-                <input type="text" class="name" placeholder="Name" pattern="[A-Za-z]{3,}" title="Only letters">
-                <input type="text" class="phone" placeholder="Phone number" pattern="[0-9]{11}" title="Only 11 numbers">
-                <input type="text" class="mail" placeholder="E-mail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-                       title="E-mail should be smth@smth.smth">
-                <input type="text" class="city" placeholder="City" pattern="[A-Za-z]{5, 15}" title="Only letters">
-                <input type="text" class="index" placeholder="Post Index" pattern="[0-9]{6}" title="Only 6 numbers">
+                <input type="number" class="amount" placeholder="Amount of product" title="Only numbers">
+                <!--                <input type="text" class="name" placeholder="Name" pattern="[A-Za-z]{3,}" title="Only letters">-->
+                <!--                <input type="text" class="phone" placeholder="Phone number" pattern="[0-9]{11}" title="Only 11 numbers">-->
+                <!--                <input type="text" class="mail" placeholder="E-mail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"-->
+                <!--                       title="E-mail should be smth@smth.smth">-->
+                <!--                <input type="text" class="city" placeholder="City" pattern="[A-Za-z]{5, 15}" title="Only letters">-->
+                <!--                <input type="text" class="index" placeholder="Post Index" pattern="[0-9]{6}" title="Only 6 numbers">-->
                 <button class="ordering">Order</button>
             </form>
             <div class="windowClose">&#10006</div>
@@ -87,114 +89,28 @@
 </header>
 <section class="shop container">
     <h2 class="section-title">Clothes</h2>
-    <div class="shop-content">
-        <div class="product-box">
-            <img src="../Clothes/regfit.png" alt="" class="product-img">
-            <h2 class="product-title">Shirt Regular fit</h2>
-            <span class="price"><%= Math.round(ans)*20 %> <%=holder%></span>
-            <div class="btn">
-                <a href="#">Create order</a>
-            </div>
-        </div>
+    <% if(prod.length === 0){ %>
+        <h2 class="section-title">Stock empty!</h2>
+    <% } else{ %>
+        <div class="shop-content">
+            <% for(let i = 0;i < prod.length;i++){ %>
+                <form action="/cart" class="needs-validation" method="POST">
+                    <div class="product-box">
+                        <img src="../Clothes/regfit.png" alt="" class="product-img">
+                        <h2 class="product-title" ><%var product = prod[i]%><%= prod[i].name %></h2>
+                        <span class="price"><%= Math.round(ans) * prod[i].price %> <%= holder %></span>
+                        <span class="author">By <%= prod[i].author %></span>
+                        <br>
+                        <span>Only <%= prod[i].quantity %> left!</span>
 
-        <div class="product-box">
-            <img src="../Clothes/relfit.png" alt="" class="product-img">
-            <h2 class="product-title">Shirt Relaxed fit</h2>
-            <span class="price"><%= Math.round(ans)*20 %> <%=holder%></span>
-            <div class="btn">
-                <a href="#">Create order</a>
-            </div>
+                        <div class="btn">
+                            <button>Add to cart</button>
+                        </div>
+                    </div>
+                </form>
+            <% } %>
         </div>
-
-        <div class="product-box">
-            <img src="../Clothes/Joggers.png" alt="" class="product-img">
-            <h2 class="product-title">Joggers</h2>
-            <span class="price"><%= Math.round(ans)*20 %> <%=holder%></span>
-            <div class="btn">
-                <a href="#">Create order</a>
-            </div>
-        </div>
-
-        <div class="product-box">
-            <img src="../Clothes/sweatshirt.png" alt="" class="product-img">
-            <h2 class="product-title">Sweatshirt</h2>
-            <span class="price"><%= Math.round(ans)*15 %> <%=holder%></span>
-            <div class="btn">
-                <a href="#">Create order</a>
-            </div>
-        </div>
-
-        <div class="product-box">
-            <img src="../Clothes/twoHoodie.png" alt="" class="product-img">
-            <h2 class="product-title">Two Hoodies /b+w</h2>
-            <span class="price"><%= Math.round(ans)*35 %> <%=holder%></span>
-            <div class="btn">
-                <a href="#">Create order</a>
-            </div>
-        </div>
-
-        <div class="product-box">
-            <img src="../Clothes/jeans.png" alt="" class="product-img">
-            <h2 class="product-title">Jeans</h2>
-            <span class="price"><%= Math.round(ans)*40 %> <%=holder%></span>
-            <div class="btn">
-                <a href="#">Create order</a>
-            </div>
-        </div>
-
-        <div class="product-box">
-            <img src="../Clothes/twoTshirt.png" alt="" class="product-img">
-            <h2 class="product-title">Two T-shirts /b+w</h2>
-            <span class="price"><%= Math.round(ans)*20 %> <%=holder%></span>
-            <div class="btn">
-                <a href="#">Create order</a>
-            </div>
-        </div>
-
-        <div class="product-box">
-            <img src="../Clothes/wCoat.png" alt="" class="product-img">
-            <h2 class="product-title">Coat /br/wm</h2>
-            <span class="price"><%= Math.round(ans)*35 %> <%=holder%></span>
-            <div class="btn">
-                <a href="#">Create order</a>
-            </div>
-        </div>
-        <div class="product-box">
-            <img src="../Clothes/whiteJacket.png" alt="" class="product-img">
-            <h2 class="product-title">Jacket</h2>
-            <span class="price"><%= Math.round(ans)*20 %> <%=holder%></span>
-            <div class="btn">
-                <a href="#">Create order</a>
-            </div>
-        </div>
-
-        <div class="product-box">
-            <img src="../Clothes/wJacket.png" alt="" class="product-img">
-            <h2 class="product-title">Jacket | 2020</h2>
-            <span class="price"><%= Math.round(ans)*15 %> <%=holder%></span>
-            <div class="btn">
-                <a href="#">Create order</a>
-            </div>
-        </div>
-
-        <div class="product-box">
-            <img src="../Clothes/wTrousers.png" alt="" class="product-img">
-            <h2 class="product-title">Trousers /b/wm</h2>
-            <span class="price"><%= Math.round(ans)*20 %> <%=holder%></span>
-            <div class="btn">
-                <a href="#">Create order</a>
-            </div>
-        </div>
-
-        <div class="product-box">
-            <img src="../Clothes/bJoggers.png" alt="" class="product-img">
-            <h2 class="product-title">Jogger /b/mn</h2>
-            <span class="price"><%= Math.round(ans)*40 %> <%=holder%></span>
-            <div class="btn">
-                <a href="#">Create order</a>
-            </div>
-        </div>
-    </div>
+    <% } %>
 </section>
 <footer>
     <div class="footer-content" id="202">
@@ -215,7 +131,7 @@
         <p>copyright &copy; 2022 DAMA designed by <span>DAMA</span></p>
     </div>
 </footer>
-<script src="../js_files/order.js"></script>
+<!--<script src="../js_files/order.js"></script>-->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>

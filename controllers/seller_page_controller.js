@@ -1,6 +1,3 @@
-const Admin = require("../models/admin");
-const Seller = require('../models/seller')
-const Customer = require('../models/consumer')
 const Product = require('../models/product')
 const path = require("path")
 
@@ -76,15 +73,22 @@ exports.update_get = async (req, res) => {
 };
 
 exports.update_patch = async (req, res) => {
-    const {currName, name, type, price, quantity} = req.body
+    // const {currName, name, type, price, quantity} = req.body
+    const {currName, type, price, quantity} = req.body
+
     const author = req.session.username
 
-    if (!currName && !name && !type && !price && !quantity) {
+    if (!currName && !type && !price && !quantity) {
         req.session.error = "Content empty!";
         return res.redirect('/seller/update');
     }
+    // if (!currName && !name && !type && !price && !quantity) {
+    //     req.session.error = "Content empty!";
+    //     return res.redirect('/seller/update');
+    // }
 
     const own = await Product.findOne({name: currName})
+    const name = own.name
 
     if (!own || own.author !== author) {
         req.session.error = "Such product is not in your list!"
@@ -92,14 +96,14 @@ exports.update_patch = async (req, res) => {
     }
 
     let product = new Product({
-        name,
+        name: name,
         type,
         price,
         quantity,
         author,
     });
     await Product.findOneAndUpdate({name: currName}, {
-        name,
+        name: name,
         type,
         price,
         quantity,

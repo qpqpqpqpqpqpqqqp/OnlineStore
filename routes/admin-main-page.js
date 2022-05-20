@@ -1,26 +1,26 @@
 const express = require('express')
 const path = require("path")
 const adminPageController = require(path.resolve("./controllers/admin_page_controller"))
-const isAuth = require(path.resolve("./auth/auth"))
+const isAdmin = require(path.resolve("./auth/adminAuth"))
 const router = express.Router();
 
 router
     .route('/')
-    .get(isAuth, adminPageController.create_get)
-    .post(isAuth, adminPageController.create_post)
+    .get(isAdmin, adminPageController.create_get)
+    .post(isAdmin, adminPageController.create_post)
 router
     .route('/read')
-    .get(isAuth, adminPageController.read_get)
+    .get(isAdmin, adminPageController.read_get)
 router
     .route('/find')
-    .get(isAuth, adminPageController.find_get)
-    .post(isAuth, adminPageController.muissa)
+    .get(isAdmin, adminPageController.find_get)
+    .post(isAdmin, adminPageController.muissa)
 router
     .route('/update')
-    .get(isAuth, adminPageController.update_get)
-    .post(isAuth, adminPageController.update_patch)
+    .get(isAdmin, adminPageController.update_get)
+    .patch(isAdmin, adminPageController.update_patch)
 router
     .route('/delete')
-    .get(isAuth, adminPageController.delete_get)
-    .post(isAuth, adminPageController.delete_post)
+    .get(isAdmin, adminPageController.delete_get)
+    .delete(isAdmin, adminPageController.delete_post)
 module.exports = router

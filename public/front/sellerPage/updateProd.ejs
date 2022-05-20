@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.88.1">
-    <title>Admin page</title>
+    <title>Seller page</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/headers/">
 
@@ -57,10 +57,10 @@
         <% } %>
         <div class="col-md-7 col-lg-8">
             <h4 class="mb-3">Update Products</h4>
-            <form action="/seller/update" class="needs-validation" method="POST">
+            <form action="/seller/update?_method=PATCH" class="needs-validation" method="POST">
                 <div class="row g-3">
                     <div class="col-sm-6">
-                        <label for="currName" class="form-label">Current product name</label>
+                        <label for="currName" class="form-label">Product name</label>
                         <input type="text" class="form-control" name="currName" id="currName" placeholder=""
                                value="" required>
                         <div class="invalid-feedback">
@@ -69,14 +69,15 @@
                     </div>
                 </div>
                 <br>
-                <div class="col-sm-6">
-                    <label for="name" class="form-label">New product name</label>
-                    <input type="text" class="form-control" name="name" id="name" placeholder="" value=""
-                           required>
-                    <div class="invalid-feedback">
-                        Valid name is required.
-                    </div>
-                </div>
+                <h5 class="form-label">Update to:</h5>
+<!--                <div class="col-sm-6">-->
+<!--                    <label for="name" class="form-label">New product name</label>-->
+<!--                    <input type="text" class="form-control" name="name" id="name" placeholder="" value=""-->
+<!--                           required>-->
+<!--                    <div class="invalid-feedback">-->
+<!--                        Valid name is required.-->
+<!--                    </div>-->
+<!--                </div>-->
                 <div class="col-sm-6">
                     <label for="type" class="form-label">Type</label>
                     <select name="type">

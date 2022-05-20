@@ -14,4 +14,5 @@ router
     .route('/register')
     .get(loginController.register_get)
     .post(loginController.register_post)
+
 module.exports = router
