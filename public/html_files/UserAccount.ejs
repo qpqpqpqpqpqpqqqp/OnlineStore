@@ -38,7 +38,7 @@
                                 <h5>Username</h5>
                             </div>
                             <div class="col-md-9 text-secondary">
-                                <%=name%>
+                                <%= name %>
                             </div>
                         </div>
                         <hr>
@@ -47,7 +47,7 @@
                                 <h5>Email</h5>
                             </div>
                             <div class="col-md-9 text-secondary">
-                                <%=email%>
+                                <%= email %>
                             </div>
                         </div>
                         <hr>
@@ -56,7 +56,7 @@
                                 <h5>Phone number</h5>
                             </div>
                             <div class="col-md-9 text-secondary">
-                                <%=phone%>
+                                <%= phone %>
                             </div>
                         </div>
                         <hr>
@@ -65,7 +65,7 @@
                                 <h5>City</h5>
                             </div>
                             <div class="col-md-9 text-secondary">
-                                <%=city%>
+                                <%= city %>
                             </div>
                         </div>
                         <hr>
@@ -74,7 +74,7 @@
                                 <h5>Post Index</h5>
                             </div>
                             <div class="col-md-9 text-secondary">
-                                <%=pIndex%>
+                                <%= pIndex %>
                             </div>
                         </div>
                     </div>
@@ -82,26 +82,35 @@
                 <div class="card mb-3 content">
                     <h1 class="m-3">Order history</h1>
                     <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <h5>T-Shirt</h5>
+                        <% if(prod.length === 0){ %>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h5>Empty</h5>
+                                </div>
                             </div>
-
-                            <div class="col-md-9 text-secondary">14.10$</div>
-                        </div>
                         <hr>
-                        <div class="row">
-                            <div class="col-md-3">
-                                <h5>Pants</h5>
+                        <% } else{ %>
+                            <% for(let i = 0;i < prod.length;i++){ %>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <h5><%= prod[i].name %></h5>
+                                    </div>
+                                    <div class="col-md-9 text-secondary"><%= prod[i].price %>$ by <%= prod[i].author %></div>
+                                </div>
+                                <hr>
+                            <% } %>
+                        <% } %>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h5>Total</h5>
+                                </div>
+                                <div class="col-md-9 text-secondary"><%= sum %>$</div>
                             </div>
-
-                            <div class="col-md-9 text-secondary">20.00$</div>
-                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </div>
 </body>
 </html>

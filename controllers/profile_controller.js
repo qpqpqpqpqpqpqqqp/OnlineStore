@@ -1,30 +1,42 @@
-const Admin = require("../models/admin")
-const Seller = require("../models/seller");
 const Customer = require("../models/consumer");
 const path = require("path")
-const bcrypt = require("bcryptjs");
+const Product = require("../models/product");
+const jwt = require("jsonwebtoken");
 
 exports.profile_get = async (req, res) => {
     const username = req.session.username
     const email = req.session.email
-    const isAdmin = req.session.isAdmin
-    const isSeller = req.session.isSeller
+    if (!req.session.token) {
+        req.session.error = "Please, authorize"
+        return res.redirect("/login")
+    }
+    let token = jwt.verify(req.session.token, process.env.SECRET_JWT)
 
-    if (isAdmin && !isSeller) {
+    if (token.role === 2) {
         res.redirect('/admin')
-    } else if (!isAdmin && isSeller) {
+    } else if (token.role === 1) {
         res.redirect('/seller/profile')
-    } else {
+    } else if (token.role === 0) {
         const phone = req.session.phone
         const city = req.session.city
         const postIndex = req.session.postIndex
+        const products = await Product.find({type: 'ashoes'})
+        let sum = 0;
+        for (let i = 0; i < products.length; i++) {
+            sum += Number(products[i].price)
+        }
         res.render(path.resolve('public/html_files/UserAccount.ejs'), {
             name: username,
             phone: phone,
             email: email,
             city: city,
-            pIndex: postIndex
+            pIndex: postIndex,
+            prod: products,
+            sum: sum,
         })
+    } else {
+        req.session.error = "You have to Login first"
+        res.redirect("/login")
     }
 };
 
@@ -52,28 +64,23 @@ exports.edit_post = async (req, res) => {
 
     // let prev = await Seller.findOne({currEmail})
     let customer = await Customer.findOne({currUsername})
-    const email = customer.email
-    const username = customer.username
-    const psw = customer.password
 
     // let admin = await Admin.findOne({currUsername})
 
     // const hashPsw = await bcrypt.hash(password, 11);
     await Customer.findOneAndUpdate({username: currUsername}, {
-        email: email,
-        username: username,
-        phone,
-        city,
-        postIndex,
-        // password: hashPsw,
-        password: psw,
+        $set: {
+            phone: phone,
+            city: city,
+            postIndex: postIndex,
+        },
     }).then(data => {
         if (!data) {
-            console.log("You do not exist!");
+            console.log("Are you even real?! Congrats you've caught unreachable error");
             return res.redirect('/profile/edit');
         } else {
-            req.session.username = username
-            req.session.email = email
+            req.session.username = customer.username
+            req.session.email = customer.email
             req.session.phone = phone
             req.session.city = city
             req.session.postIndex = postIndex

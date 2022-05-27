@@ -42,7 +42,8 @@ exports.create_post = async (req, res) => {
         email,
         username,
         phone,
-        password: hashPsw
+        password: hashPsw,
+        special: 1,
     });
 
     await seller.save()
@@ -108,12 +109,14 @@ exports.update_patch = async (req, res) => {
         username,
         phone,
         password: hashPsw,
+        special: 1,
     });
     await Seller.findOneAndUpdate({username: currUsername}, {
         email,
         username,
         phone,
         password: hashPsw,
+        special: 1,
     }).then(async data => {
         if (!data) {
             req.session.error = "Seller to update does not exist!";
@@ -172,12 +175,7 @@ exports.delete_post = async (req, res) => {
     } else if (customer) {
         await Customer.deleteOne(customer)
         res.render(p, {name: customer.username, type: 'Customer'})
-    }
-        // else if (admin) {
-        //     await Admin.deleteOne(admin.email)
-        //     res.render(p, {name: admin.email, type: 'Admin'})
-    // }
-    else {
+    } else {
         res.render(p, {name: null, type: 'None'})
     }
 };
