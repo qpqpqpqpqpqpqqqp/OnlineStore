@@ -3,8 +3,6 @@ const session = require("express-session")
 const MongoDBStore = require("connect-mongodb-session")(session)
 const passport = require('passport')
 const bodyParser = require("body-parser")
-const expressLayouts = require('express-ejs-layouts');
-const flash = require('connect-flash');
 const methodOverride = require("method-override")
 
 const connectDB = require("./config/db");
@@ -13,14 +11,14 @@ const jwt = require("jsonwebtoken");
 const mongoURI = config.url;
 require('dotenv').config()
 
+const app = express();
+
 connectDB().then(() => console.log("Database Connected Successfully!!"))
 
 const store = new MongoDBStore({
     uri: mongoURI,
     collection: "mySessions",
 })
-
-const app = express();
 
 require('./config/passport')(passport);
 
