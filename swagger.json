@@ -1,0 +1,480 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Project CRUD for Back-End",
+    "description": "My User Project Application API",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Admin",
+      "description": "API for admin in the system"
+    },
+    {
+      "name": "Seller",
+      "description": "API for seller in the system"
+    },
+    {
+      "name": "Consumer",
+      "description": "API for consumer in the system"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/admin/addSeller": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "description": "Create new seller in system",
+        "parameters": [
+          {
+            "name": "seller",
+            "in": "body",
+            "description": "Seller that we want to create",
+            "schema": {
+              "$ref": "#/definitions/Seller"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Seller is created",
+            "schema": {
+              "$ref": "#/definitions/Seller"
+            }
+          }
+        }
+      }
+    },
+    "/admin/find": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "description": " Find seller in system",
+        "parameters": [
+          {
+            "name": "seller",
+            "in": "body",
+            "description": "Seller that we want to find",
+            "schema": {
+              "$ref": "#/definitions/Seller"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Seller is find",
+            "schema": {
+              "$ref": "#/definitions/Seller"
+            }
+          }
+        }
+      }
+    },
+    "/profile/edit": {
+      "post": {
+        "tags": [
+          "Consumer"
+        ],
+        "description": "Edit your profile",
+        "parameters": [
+          {
+            "name": "Consumer",
+            "in": "body",
+            "description": "Add new properties for new profile",
+            "schema": {
+              "$ref": "#/definitions/Consumer"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Profile is edited",
+            "schema": {
+              "$ref": "#/definitions/Consumer"
+            }
+          }
+        }
+      }
+    },
+    "/admin/read": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Get all sellers and consumers in system",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Seller"
+            }
+          }
+        }
+      }
+    },
+    "/admin/delete": {
+      "parameters": [
+        {
+          "name": "email",
+          "in": "path",
+          "required": true,
+          "description": "Email of seller or customer that we want to delete",
+          "type": "string"
+        }
+      ],
+      "delete": {
+        "summary": "Delete sellers and customers with given email",
+        "tags": [
+          "Admin"
+        ],
+        "responses": {
+          "200": {
+            "description": "Seller is deleted",
+            "schema": {
+              "$ref": "#/definitions/Seller"
+            }
+          }
+        }
+      }
+    },
+    "/admin/update": {
+      "parameters": [
+        {
+          "name": "email",
+          "in": "path",
+          "required": true,
+          "description": "Email of seller that we want to update",
+          "type": "integer"
+        }
+      ],
+      "put": {
+        "summary": "Update seller with given email",
+        "tags": [
+          "Admin"
+        ],
+        "parameters": [
+          {
+            "name": "seller",
+            "in": "body",
+            "description": "Seller with new values of properties",
+            "schema": {
+              "$ref": "#/definitions/UpdateSeller"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Seller is updated",
+            "schema": {
+              "$ref": "#/definitions/Seller"
+            }
+          }
+        }
+      }
+    },
+    "/seller/create": {
+      "post": {
+        "tags": [
+          "Seller"
+        ],
+        "description": "Create new product in system",
+        "parameters": [
+          {
+            "name": "product",
+            "in": "body",
+            "description": "Product that we want to create",
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Product is created",
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          }
+        }
+      }
+    },
+    "/seller/profile": {
+      "get": {
+        "tags": [
+          "Seller"
+        ],
+        "summary": "Get all product in system",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          }
+        }
+      }
+    },
+    "/seller/delete": {
+      "parameters": [
+        {
+          "name": "name",
+          "in": "path",
+          "required": true,
+          "description": "Name of product that we want to delete",
+          "type": "string"
+        }
+      ],
+      "delete": {
+        "summary": "Delete product with given product",
+        "tags": [
+          "Seller"
+        ],
+        "responses": {
+          "200": {
+            "description": "Product is deleted",
+            "schema": {
+              "$ref": "#/definitions/Product"
+            }
+          }
+        }
+      }
+    },
+    "/seller/update": {
+      "parameters": [
+        {
+          "name": "email",
+          "in": "path",
+          "required": true,
+          "description": "Email of seller that we want to update",
+          "type": "string"
+        }
+      ],
+      "put": {
+        "summary": "Update product with given email",
+        "tags": [
+          "Seller"
+        ],
+        "parameters": [
+          {
+            "name": "seller",
+            "in": "body",
+            "description": "Seller with new values of properties",
+            "schema": {
+              "$ref": "#/definitions/UpdateSeller"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Seller is updated",
+            "schema": {
+              "$ref": "#/definitions/Consumer"
+            }
+          }
+        }
+      }
+    }
+
+  },
+
+
+
+  "definitions": {
+    "Admin": {
+      "required": [
+        "username",
+        "email",
+        "password",
+        "special"
+      ],
+      "properties": {
+        "username": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "email": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "password": {
+          "type": "string"
+        },
+        "special": {
+          "type": "integer"
+        }
+      }
+    },
+    "Product": {
+      "required": [
+        "name",
+        "price",
+        "type",
+        "quantity",
+        "author"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "price": {
+          "type": "integer"
+        },
+        "type": {
+          "type": "string"
+        },
+        "quantity": {
+          "type": "string"
+        },
+        "author": {
+          "type": "string"
+        }
+      }
+    },
+    "UpdateProduct": {
+      "required": [
+        "name",
+        "price",
+        "type",
+        "quantity",
+        "author"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "price": {
+          "type": "integer"
+        },
+        "type": {
+          "type": "string"
+        },
+        "quantity": {
+          "type": "string"
+        },
+        "author": {
+          "type": "string"
+        }
+      }
+    },
+    "Consumer": {
+      "required": [
+        "username",
+        "email",
+        "phone",
+        "city",
+        "postIndex",
+        "googleId",
+        "special"
+      ],
+      "properties": {
+        "username": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "email": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "password": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "integer"
+        },
+        "city": {
+          "type": "string"
+        },
+        "postIndex": {
+          "type": "integer"
+        },
+        "googleId": {
+          "type": "integer"
+        },
+        "special": {
+          "type": "integer"
+        }
+      }
+    },
+    "Seller": {
+      "required": [
+        "username",
+        "email",
+        "phone",
+        "password",
+        "special"
+      ],
+      "properties": {
+        "username": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "email": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "password": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "special": {
+          "type": "integer"
+        }
+      }
+    },
+
+    "UpdateSeller": {
+      "required": [
+        "username",
+        "email",
+        "phone",
+        "password"
+      ],
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "phone": {
+          "type": "integer"
+        }
+      }
+    }
+  }
+}

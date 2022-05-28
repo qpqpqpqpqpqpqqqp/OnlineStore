@@ -4,15 +4,17 @@ const MongoDBStore = require("connect-mongodb-session")(session)
 const passport = require('passport')
 const bodyParser = require("body-parser")
 const methodOverride = require("method-override")
-
 const connectDB = require("./config/db");
 const config = require("./config/database.config")
-const jwt = require("jsonwebtoken");
+const jwt = require("jsonwebtoken")
 const mongoURI = config.url;
 require('dotenv').config()
 
 const app = express();
-
+app.set('view engine', 'ejs')
+const swaggerUi = require('swagger-ui-express')
+swaggerDocument = require('../web_project/swagger.json');
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 connectDB().then(() => console.log("Database Connected Successfully!!"))
 
 const store = new MongoDBStore({
@@ -22,7 +24,6 @@ const store = new MongoDBStore({
 
 require('./config/passport')(passport);
 
-app.set('view engine', 'ejs')
 app.use(methodOverride('_method'))
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(express.static('public'))
@@ -74,6 +75,12 @@ let port = process.env.PORT;
 if (port == null || port == "") {
     port = 3000;
 }
+
+app.use(
+    '/api-docs',
+    swaggerUi.serve,
+    swaggerUi.setup(swaggerDocument)
+);
 
 app.listen(port, () =>
     console.log(`App listening at http://localhost:${port}/home`)
